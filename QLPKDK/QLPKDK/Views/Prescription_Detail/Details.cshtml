@@ -1,0 +1,82 @@
+﻿@model QLPKDK.Models.Prescription_Detail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Prescription_Detail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Quanlity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quanlity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Morning)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Morning)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Noon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Noon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Afternoon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Afternoon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Night)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Night)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Note)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Medicine.Code_medicine)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Medicine.Code_medicine)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prescription.Note)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prescription.Note)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

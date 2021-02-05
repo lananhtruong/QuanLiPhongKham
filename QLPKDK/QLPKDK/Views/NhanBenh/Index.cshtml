@@ -1,0 +1,58 @@
+﻿@model IEnumerable<QLPKDK.Models.Prescription>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Danh sách bệnh nhân</h2>
+
+<p>
+    @Html.ActionLink("Đăng ký lịch khám", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Ngày
+        </th>
+        <th>
+            Bệnh Nhân
+        </th>
+        <th>
+            Bác Sĩ
+        </th>
+        <th>
+            Người Phát Thuốc @*Nhân viên phát thuốc*@
+        </th>
+        <th>
+            Tình Trạng
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @(item.Customer.Name)
+            </td>
+            <td>
+                @(item.Employee.Name)
+            </td>
+            <td>
+                @(item.Employee1 == null ? "" : item.Employee1.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

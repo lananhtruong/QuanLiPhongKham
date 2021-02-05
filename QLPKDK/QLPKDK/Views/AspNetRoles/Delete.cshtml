@@ -1,0 +1,37 @@
+﻿@model QLPKDK.Models.AspNetRole
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3>Xóa quyền</h3>
+
+<h4>Bạn có chắc muốn xóa quyền truy cập này?</h4>
+<div>
+    @*<h4>AspNetRole</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        <center>
+            <dt>
+                <label>Quyền truy cập</label>
+                @*@Html.DisplayNameFor(model => model.Name)*@
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+        </center>
+    </dl>
+
+    <center>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Xóa" class="btn btn-default" /> |
+                @Html.ActionLink("Trở lại danh sách", "Index")
+            </div>
+        }
+    </center>
+</div>

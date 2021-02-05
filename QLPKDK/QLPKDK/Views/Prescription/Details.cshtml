@@ -1,0 +1,137 @@
+﻿@model QLPKDK.Models.Prescription
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Đơn Thuốc</h2>
+
+<div>
+    <h4>ID: @(Model.Id.ToString("000000"))</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Ngày:
+        </dt>
+
+        <dd>
+            @(Model.Date.Value.ToString("dd-MM-yyyy"))
+        </dd>
+
+        <dt>
+            Bệnh nhân:
+        </dt>
+
+        <dd>
+            @(Model.Customer.Name)
+        </dd>
+
+        <dt>
+            Bác sĩ:
+        </dt>
+
+        <dd>
+            @(Model.Employee.Name)
+        </dd>
+
+        <dt>
+            Người phát thuốc:
+        </dt>
+
+        <dd>
+            @(Model.Employee1.Name)
+        </dd>
+
+        <dt>
+            Tình trạng:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            Ghi chú:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+    </dl>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            STT
+        </th>
+        <th>
+            Tên Thuốc
+        </th>
+        <th>
+            ĐVT
+        </th>
+        <th>
+            Số Lượng
+        </th>
+        <th>
+            Sáng
+        </th>
+        <th>
+            Trưa
+        </th>
+        <th>
+            Chiều
+        </th>
+        <th>
+            Tối
+        </th>
+        <th>
+            Đơn giá
+        </th>
+        <th>
+            Cách Dùng
+        </th>
+    </tr>
+
+    @*@foreach (var item in Model.don_thuoc_chi_tiet)*@
+    @foreach (var item in Model.Prescription_Detail.Select((x, i) => new { Data = x, Index = i }))
+    {
+        <tr>
+            <td>
+                @(item.Index + 1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data.Medicine.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data.Medicine.Unit_measurement)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data.Quanlity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data.Morning)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data.Noon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data.Afternoon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data.Night)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data.Medicine.Unit_price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data.Note)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div>
+    @Html.ActionLink("Hoàn thành", "Index")
+</div>

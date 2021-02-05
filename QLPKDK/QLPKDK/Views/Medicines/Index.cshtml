@@ -1,0 +1,79 @@
+﻿@model IEnumerable<QLPKDK.Models.Medicine>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Quản lý kho thuốc</h2>
+
+<p>
+    @Html.ActionLink("Thêm loại thuốc", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <p>Mã thuốc</p>
+            @*@Html.DisplayNameFor(model => model.Code_medicine)*@
+        </th>
+        <th>
+            <p>Tên thuốc</p>
+        </th>
+        <th>
+            <p>Đơn vị tính</p>
+        </th>
+        <th>
+            <p>Xuất xứ</p>
+        </th>
+        <th>
+            <p style="text-align:right">Đơn giá (VND)</p>
+        </th>
+        <th>
+            <p style="text-align:right">Số lượng</p>
+        </th>
+        <th>
+            <p>Ngày nhập</p>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    string X = "";
+        if (item.Quanlity < 600)
+        {
+            X = "bg-warning";
+        }
+        if (item.Quanlity < 150)
+        {
+            X = "bg-danger";
+        }
+    <tr class="@X">
+        <td>
+            <p>@Html.DisplayFor(modelItem => item.Code_medicine)</p>
+        </td>
+        <td>
+            <p>@Html.DisplayFor(modelItem => item.Name)</p>
+        </td>
+        <td>
+            <p>@Html.DisplayFor(modelItem => item.Unit_measurement)</p>
+        </td>
+        <td>
+            <p>@Html.DisplayFor(modelItem => item.Origin)</p>
+        </td>
+        <td>
+            <p style="text-align:right">@Html.DisplayFor(modelItem => item.Unit_price)</p>
+        </td>
+        <td>
+            <p style="text-align:right">@Html.DisplayFor(modelItem => item.Quanlity)</p>
+        </td>
+        <td>
+            <p>@Html.DisplayFor(modelItem => item.Date)</p>
+        </td>
+        <td>
+            @Html.ActionLink("Chỉnh sửa", "Edit", new { id=item.Id }) 
+            @*@Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,100 @@
+﻿@using Microsoft.AspNet.Identity;
+@model QLPKDK.Models.Prescription
+
+@{
+    ViewBag.Title = "Details";
+    var mediator_id = User.Identity.GetUserId();
+
+}
+
+<h2>Đơn Thuốc</h2>
+
+<div>
+    <h4>ID: @(Model.Id.ToString("000000"))</h4>
+    <hr />
+    <table cellpadding="4">
+        <tr><th>Ngày:</th><td><i>@(Model.Date.Value.ToString("dd-MM-yyyy"))</i></td></tr>
+        <tr><th>Bệnh nhân:</th><td><i>@(Model.Customer.Name)</i></td></tr>
+        <tr><th>Bác sĩ:</th><td><i>@(Model.Employee.Name)</i></td></tr>
+        <tr><th>Người Phát Thuốc:</th><td><i>@ViewBag.MediatorName</i></td></tr>
+        <tr><th>Tình trạng:</th><td><i>@(ViewBag.dict[(int)Model.Status])</i></td></tr>
+    </table>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            STT
+        </th>
+        <th>
+            Tên Thuốc
+        </th>
+        <th>
+            ĐVT
+        </th>
+        <th>
+            Số Lượng
+        </th>
+        <th>
+            Sáng
+        </th>
+        <th>
+            Trưa
+        </th>
+        <th>
+            Chiều
+        </th>
+        <th>
+            Tối
+        </th>
+        <th>
+            Cách Dùng
+        </th>
+    </tr>
+
+    @*@foreach (var item in Model.don_thuoc_chi_tiet)*@
+    @foreach (var item in Model.Prescription_Detail.Select((x, i) => new { Data = x, Index = i }))
+    {
+        <tr>
+            <td>
+                @(item.Index + 1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data.Medicine.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data.Medicine.Unit_measurement)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data.Quanlity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data.Morning)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data.Noon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data.Afternoon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data.Night)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data.Note)
+            </td>
+        </tr>
+    }
+    <tr>
+        <td colspan="9">
+            <b>Ghi chú:</b> <i>@Html.DisplayFor(model => model.Note)</i>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="9" class="text-right">
+            <a href="@Url.Action("HoanThanhPhatThuoc", new { id = Model.Id })" class="btn btn-info">
+                Hoàn Thành Phát Thuốc
+            </a>
+        </td>
+    </tr>
+
+</table>

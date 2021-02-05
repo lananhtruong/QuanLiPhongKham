@@ -1,0 +1,160 @@
+﻿@model QLPKDK.Models.Prescription_Detail
+@{
+    ViewBag.Title = "Kham";
+    QLPKDK.Models.Prescription dt = ViewBag.don_thuoc;
+}
+
+<h2>Đơn Thuốc</h2>
+
+<div>
+    <h4>ID: @(dt.Id.ToString("000000"))</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Ngày:
+        </dt>
+
+        <dd>
+            @(dt.Date.Value.ToString("dd-MM-yyyy"))
+        </dd>
+
+        <dt>
+            Bệnh nhân:
+        </dt>
+
+        <dd>
+            @(dt.Customer.Name)
+        </dd>
+
+        <dt>
+            Bác sĩ:
+        </dt>
+
+        <dd>
+            @(dt.Employee.Name)
+        </dd>
+
+        <dt>
+            Nhân viên:
+        </dt>
+
+        <dd>
+            @(dt.Employee1 == null ? "" : dt.Employee1.Name)
+        </dd>
+
+        <dt>
+            Tình trạng:
+        </dt>
+
+        <dd>
+            @(dt.Status)
+        </dd>
+
+        <dt>
+            Ghi chú:
+        </dt>
+
+        <dd>
+            @(dt.Note)
+        </dd>
+    </dl>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            STT
+        </th>
+        <th>
+            Tên Thuốc
+        </th>
+        <th>
+            ĐVT
+        </th>
+        <th class="text-right">
+            Số Lượng
+        </th>
+        <th class="text-right">
+            Sáng
+        </th>
+        <th class="text-right">
+            Trưa
+        </th>
+        <th class="text-right">
+            Chiều
+        </th>
+        <th class="text-right">
+            Tối
+        </th>
+        <th>
+            Cách Dùng
+        </th>
+    </tr>
+    @foreach (var item in dt.Prescription_Detail.Select((x, i) => new { Data = x, Index = i }))
+    {
+        <tr>
+            <td>
+                @(item.Index + 1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data.Medicine.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data.Medicine.Unit_measurement)
+            </td>
+            <td align="right">
+                @Html.DisplayFor(modelItem => item.Data.Quanlity)
+            </td>
+            <td align="right">
+                @Html.DisplayFor(modelItem => item.Data.Morning)
+            </td>
+            <td align="right">
+                @Html.DisplayFor(modelItem => item.Data.Noon)
+            </td>
+            <td align="right">
+                @Html.DisplayFor(modelItem => item.Data.Afternoon)
+            </td>
+            <td align="right">
+                @Html.DisplayFor(modelItem => item.Data.Night)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data.Note)
+            </td>
+        </tr>
+    }
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <tr>
+            <td colspan="3">
+                @Html.HiddenFor(model => model.Prescription_id, new { Value = dt.Id })
+                @Html.DropDownList("Medicine_id", null, htmlAttributes: new { @class = "form-control", style = "width: 300px;" })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Quanlity, new { htmlAttributes = new { @class = "form-control", style = "width: 100%;" } })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Morning, new { htmlAttributes = new { @class = "form-control", style = "width: 100%;" } })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Noon, new { htmlAttributes = new { @class = "form-control", style = "width: 100%;" } })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Afternoon, new { htmlAttributes = new { @class = "form-control", style = "width: 100%;" } })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Night, new { htmlAttributes = new { @class = "form-control", style = "width: 100%;" } })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Note, new { htmlAttributes = new { @class = "form-control", style = "width: 100%;" } })
+            </td>
+        </tr>
+        <tr>
+            <td colspan="9" class="text-right">
+                <input type="submit" value="Lưu" class="btn btn-info" />
+                <a href="@Url.Action("ChuyenPhatThuoc", new { id = dt.Id })" class="btn btn-info">
+                    Chuyển Sang Phòng Phát Thuốc
+                </a>
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8e9464afbc52453298be09da32bee44a" Name="Diagram1" ZoomLevel="100">
+        <EntityTypeShape EntityType="QLPKDKModel.AspNetRole" Width="1.5" PointX="1.875" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLPKDKModel.AspNetUserClaim" Width="1.5" PointX="9.625" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLPKDKModel.AspNetUserLogin" Width="1.5" PointX="6.625" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLPKDKModel.AspNetUser" Width="1.5" PointX="4" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLPKDKModel.Customer" Width="1.5" PointX="8.5" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLPKDKModel.Employee" Width="1.5" PointX="5.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLPKDKModel.Medicine" Width="1.5" PointX="11.875" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLPKDKModel.Prescription" Width="1.5" PointX="7.875" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLPKDKModel.Prescription_Detail" Width="1.5" PointX="11.75" PointY="10.125" IsExpanded="true" />
+        <AssociationConnector Association="QLPKDKModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="QLPKDKModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="QLPKDKModel.FK__Customer__UserId__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="QLPKDKModel.FK__Employee__UserId__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="QLPKDKModel.FK_customer" ManuallyRouted="false" />
+        <AssociationConnector Association="QLPKDKModel.FK_doctor" ManuallyRouted="false" />
+        <AssociationConnector Association="QLPKDKModel.FK_mediator" ManuallyRouted="false" />
+        <AssociationConnector Association="QLPKDKModel.FK_medicine" ManuallyRouted="false" />
+        <AssociationConnector Association="QLPKDKModel.FK_pres" ManuallyRouted="false" />
+        <AssociationConnector Association="QLPKDKModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

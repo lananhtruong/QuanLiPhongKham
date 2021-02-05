@@ -1,0 +1,83 @@
+﻿@model IEnumerable<QLPKDK.Models.Prescription>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Danh Sách Đơn Thuốc</h2>
+
+<p>
+    @using (Html.BeginForm())
+    {
+        <table cellpadding="4">
+            <tr><th>Ngày</th><th>Tình Trạng</th><th></th></tr>
+            <tr>
+                <td>
+                    @Html.TextBox("date", null, htmlAttributes: new { type = "date", @Value = ViewBag.date, @class = "form-control" })
+                </td>
+                <td>
+                    @*@Html.DropDownList("status", null, htmlAttributes: new { @class = "form-control" })*@
+                    @Html.DropDownList("status", (SelectList)ViewBag.status_list, htmlAttributes: new { @class = "form-control" })
+                </td>
+                <td>
+                    <button type="submit" class="btn btn-info">Lọc Danh Sách Đơn Thuốc</button>
+                </td>
+            </tr>
+        </table>
+    }
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Mã Số
+        </th>
+        <th>
+            Ngày
+        </th>
+        <th>
+            Bệnh Nhân
+        </th>
+        <th>
+            Bác Sĩ
+        </th>
+        <th>
+            Người Phát Thuốc @*Nhân viên phát thuốc*@
+        </th>
+        <th>
+            Tình Trạng
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @(item.Id.ToString("000000"))
+            </td>
+            <td>
+                @(item.Date.GetValueOrDefault().ToString("dd-MM-yyyy"))
+            </td>
+            <td>
+                @(item.Customer.Name)
+            </td>
+            <td>
+                @(item.Employee.Name)
+            </td>
+            <td>
+                @(item.Employee1 == null ? "" : item.Employee1.Name)
+            </td>
+            <td>
+                @(ViewBag.dict[(int)item.Status])
+            </td>
+            <td>
+                @*Nếu đơn thuốc đang ở trạng thái chưa phát thuốc thì mới hiện link "Phát Thuốc"*@
+                @if (item.Status == 1)
+                {
+                    @Html.ActionLink("Phát Thuốc", "PhatThuoc", new { id = item.Id })
+                }
+            </td>
+        </tr>
+    }
+
+</table>
